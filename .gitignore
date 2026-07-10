@@ -1,0 +1,14 @@
+# Ignore everything inside palworld
+palworld/*
+
+# Allow Pal directory
+!palworld/Pal/
+
+# Ignore everything inside Pal
+palworld/Pal/*
+
+# Allow Saved directory
+!palworld/Pal/Saved/
+
+# Track everything inside Saved
+!palworld/Pal/Saved/**
