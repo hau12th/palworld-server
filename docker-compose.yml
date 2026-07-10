@@ -15,7 +15,7 @@ services:
 
     volumes:
       - ./palworld:/palworld
-      - ./compile-settings.sh:/home/steam/server/scripts/compile-settings.sh
+      - ./compile-settings.sh:/home/steam/server/compile-settings.sh
       - ./PalWorldSettings.ini.template:/home/steam/server/files/PalWorldSettings.ini.template
 
     logging:
