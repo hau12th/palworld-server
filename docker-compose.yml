@@ -1,0 +1,32 @@
+services:
+  palworld:
+    image: thijsvanloef/palworld-server-docker:latest
+    container_name: palworld-server
+
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+    env_file:
+      - .env
+
+    ports:
+      - "${PORT}:${PORT}/udp"
+      - "${QUERY_PORT}:${QUERY_PORT}/udp"
+
+    volumes:
+      - ./palworld:/palworld
+      - ./compile-settings.sh:/home/steam/server/scripts/compile-settings.sh
+      - ./PalWorldSettings.ini.template:/home/steam/server/files/PalWorldSettings.ini.template
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep PalServer >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
