@@ -1,14 +1,20 @@
 # Ignore everything inside palworld
 palworld/*
 
-# Allow Pal directory
+# Allow Pal
 !palworld/Pal/
 
 # Ignore everything inside Pal
 palworld/Pal/*
 
-# Allow Saved directory
+# Allow Saved
 !palworld/Pal/Saved/
 
-# Track everything inside Saved
-!palworld/Pal/Saved/**
+# Ignore everything inside Saved
+palworld/Pal/Saved/*
+
+# Chỉ giữ Config
+!palworld/Pal/Saved/Config/
+
+# Track toàn bộ Config
+!palworld/Pal/Saved/Config/**
