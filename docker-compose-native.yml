@@ -1,7 +1,7 @@
 services:
   palworld-native:
     # https://github.com/pocketpairjp/palworld-dedicated-server-docker/pkgs/container/palserver
-    image: ghcr.io/pocketpairjp/palserver:v1.0.1.0.100427
+    image: ghcr.io/pocketpairjp/palserver:v1.0.0.100427
     entrypoint: /pal/helper.sh
 
     # https://tech.palworldgame.com/settings-and-operation/arguments
