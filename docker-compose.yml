@@ -1,30 +1,20 @@
 services:
   palworld:
-    image: thijsvanloef/palworld-server-docker:latest
-    container_name: palworld-server
+    # https://github.com/pocketpairjp/palworld-dedicated-server-docker/pkgs/container/palserver
+    image: ghcr.io/pocketpairjp/palserver:v1.0.0.100427
+    container_name: palworld-native
+    entrypoint: /pal/helper.sh
 
-    restart: unless-stopped
-    stop_grace_period: 30s
-
-    env_file:
-      - .env
+    # https://tech.palworldgame.com/settings-and-operation/arguments
+    command:
+      - -port=8211
+      - -useperfthreads
+      - -NoAsyncLoadingThread
+      - -UseMultithreadForDS
 
     ports:
-      - "${PORT}:${PORT}/udp"
-      - "${QUERY_PORT}:${QUERY_PORT}/udp"
+      - "8211:8211/udp"
 
     volumes:
-      - ./palworld:/palworld
-
-    logging:
-      driver: json-file
-      options:
-        max-size: "100m"
-        max-file: "5"
-
-    healthcheck:
-      test: ["CMD-SHELL", "pgrep PalServer >/dev/null || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 120s
+      - ./helper.sh:/pal/helper.sh:ro
+      - ./palworld/Pal/Saved:/pal/Package/Pal/Saved
